@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { appShellStyles } from '../assets/dummyStyles.js';
 import logo from '../assets/logo.png'
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useClerk, useUser } from '@clerk/clerk-react'
 
 
@@ -9,7 +9,7 @@ import { useClerk, useUser } from '@clerk/clerk-react'
 const AppShell = () => {
 
   const navigate = useNavigate();
-  const { signout } = useClerk();
+  const { signOut } = useClerk();
   const { user } = useUser();
 
 
@@ -59,18 +59,44 @@ const AppShell = () => {
   }, []);
 
   //logout 
-  const logout = async ()=>{
+  const logout = async () => {
     try {
-      await signout();
+      await signOut();
+      navigate("/login");
     } catch (error) {
       console.warn("Sign out Error : ", error);
     }
-    navigate("/login");
+
   }
 
   //toggle sizebar 
 
   const toggleSidebar = () => setCollapsed(!collapsed);
+
+  // display name 
+  const displayName = (() => {
+    if (!user) {
+      return "User";
+    }
+    const name = user.fullName || user.firstName || user.username || "";
+    return name.trim() || (user.email || "").split("@")?.[0] || "User";
+  })();
+
+  const firstName = () => {
+    const parts = displayName.split(" ").filter(Boolean);
+    return parts.length ? parts[0] : displayName;            // "Vishal Prajapati" => "Vishal" extract first name
+  };
+
+  const initials = () => {
+    const parts = displayName.split(" ").filter(Boolean);
+    if (parts.length === 1) {
+      return parts[0].charAt(0).toUpperCase();
+    }
+    return (
+      parts[0].charAt(0) + parts[parts.length - 1].charAt(0)   // "Vishal Prajapati" = "VP" extract first char from first and lastname
+    ).toUpperCase();
+  };
+
 
   /* ----- Icons ----- */
   const DashboardIcon = ({ className = "w-5 h-5" }) => (
@@ -165,7 +191,7 @@ const AppShell = () => {
   const SidebarLink = ({ to, icon, children }) => (
     <NavLink
       to={to}
-      className={({ isActive }) => `*
+      className={({ isActive }) => `
       ${appShellStyles.sidebarLink}
       ${collapsed ? appShellStyles.sidebarLinkCollapsed : ""}
       ${isActive
@@ -253,23 +279,209 @@ const AppShell = () => {
               </nav>
             </div>
             <div className={appShellStyles.userSection}>
-                <div className={`${appShellStyles.userDivider} ${
-                  collapsed ? appShellStyles.userDividerCollapsed :appShellStyles.userDividerExpanded
+              <div className={`${appShellStyles.userDivider} ${collapsed ? appShellStyles.userDividerCollapsed : appShellStyles.userDividerExpanded
                 }`}>
-                  {!collapsed ? (
-                    <button onClick={logout} className={appShellStyles.logoutButton}>
-                      <LogoutIcon className={appShellStyles.logoutIcon} />
-                      <span>Logout </span>
-                    </button>
-                  ):(
-                    <button onClick={logout} className='w-fill flex items-center justify-center p-3 rounded-xl text-red-600 hover:bg-red-50 hover:shadow-md transition-all duration-300'>
-                      <LogoutIcon className='w-5 h-5 hover:scale-110 transition-transform'/>
-                    </button>
-                  )}
+                {!collapsed ? (
+                  <button onClick={logout} className={appShellStyles.logoutButton}>
+                    <LogoutIcon className={appShellStyles.logoutIcon} />
+                    <span>Logout </span>
+                  </button>
+                ) : (
+                  <button onClick={logout} className='w-fill flex items-center justify-center p-3 rounded-xl text-red-600 hover:bg-red-50 hover:shadow-md transition-all duration-300'>
+                    <LogoutIcon className='w-5 h-5 hover:scale-110 transition-transform' />
+                  </button>
+                )}
+
+                <div className={appShellStyles.collapseSection}>
+                  <button onClick={toggleSidebar} className={`${appShellStyles.collapseButtonInner} ${collapsed ? appShellStyles.collapseButtonCollapsed : ""
+                    }`}>
+                    {!collapsed && (
+                      <span> {collapsed ? "Expand" : "Collapse"}</span>
+                    )}
+                    <CollapseIcon collapsed={collapsed} />
+                  </button>
                 </div>
+              </div>
             </div>
           </div>
         </aside>
+
+        {/* --------Mobile View----------- */}
+        {mobileOpen && (
+          <div className={appShellStyles.mobileOverlay}>
+            <div
+              className={appShellStyles.mobileBackdrop}
+              onClick={() => setMobileOpen(false)}
+            />
+            <div className={appShellStyles.mobileSidebar}>
+              <div className={appShellStyles.mobileHeader}>
+                <Link to='/' className={appShellStyles.mobileLogoLink} onClick={() => setMobileOpen(false)}>
+                  <img src={logo} alt="Logo" className={appShellStyles.mobileLogoImage} />
+                  <span className={appShellStyles.mobileLogoText}>
+                    InvoiceAI
+                  </span>
+                </Link>
+
+                <button onClick={() => setMobileOpen(false)} className={appShellStyles.mobileCloseButton}>
+                  <svg
+                    className={appShellStyles.mobileCloseIcon}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+              </div>
+
+              {/* --------navigations--------- */}
+
+              <nav className={appShellStyles.mobileNav}>
+                <NavLink
+                  onClick={() => setMobileOpen(false)}
+                  to="/app/dashboard"
+                  className={({ isActive }) =>
+                    `${appShellStyles.mobileNavLink} ${isActive
+                      ? appShellStyles.mobileNavLinkActive
+                      : appShellStyles.mobileNavLinkInactive
+                    }`
+                  }
+                >
+                  {" "}
+                  <DashboardIcon /> Dashboard
+                </NavLink>
+                <NavLink
+                  onClick={() => setMobileOpen(false)}
+                  to="/app/invoices"
+                  className={({ isActive }) =>
+                    `${appShellStyles.mobileNavLink} ${isActive
+                      ? appShellStyles.mobileNavLinkActive
+                      : appShellStyles.mobileNavLinkInactive
+                    }`
+                  }
+                >
+                  {" "}
+                  <InvoiceIcon /> Invoices
+                </NavLink>
+                <NavLink
+                  onClick={() => setMobileOpen(false)}
+                  to="/app/create-invoice"
+                  className={({ isActive }) =>
+                    `${appShellStyles.mobileNavLink} ${isActive
+                      ? appShellStyles.mobileNavLinkActive
+                      : appShellStyles.mobileNavLinkInactive
+                    }`
+                  }
+                >
+                  {" "}
+                  <CreateIcon /> Create Invoice
+                </NavLink>
+                <NavLink
+                  onClick={() => setMobileOpen(false)}
+                  to="/app/business"
+                  className={({ isActive }) =>
+                    `${appShellStyles.mobileNavLink} ${isActive
+                      ? appShellStyles.mobileNavLinkActive
+                      : appShellStyles.mobileNavLinkInactive
+                    }`
+                  }
+                >
+                  {" "}
+                  <ProfileIcon /> Business Profile
+                </NavLink>
+              </nav>
+
+              <div className={appShellStyles.mobileLogoutSection}>
+                <button onClick={() => {
+                  setMobileOpen(false);
+                  logout();
+
+                }} className={appShellStyles.mobileLogoutButton}>
+                  <LogoutIcon /> Logout
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
+        {/* main content section(navbar) */}
+
+        <div className="flex-1 min-w-0">
+          <header className={`${appShellStyles.header} ${scrolled
+            ? appShellStyles.headerScrolled
+            : appShellStyles.headerNotScrolled
+            }`}>
+            <div className={appShellStyles.headerTopSection}>
+              <div className={appShellStyles.headerContent}>
+                <button onClick={() => setMobileOpen(true)} className={appShellStyles.mobileMenuButton}>
+                  <svg
+                    className={appShellStyles.mobileMenuIcon}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+
+                {!isMobile && (
+                  <button onClick={toggleSidebar} className={appShellStyles.desktopCollapseButton}>
+                    <CollapseIcon collapsed={collapsed} />
+                  </button>
+                )}
+
+                <div className={appShellStyles.welcomeContainer}>
+                  <h2 className={appShellStyles.welcomeTitle}>
+                    Welcome back, {" "}
+                    <span className={appShellStyles.welcomeName}>
+                      {firstName()}
+                    </span>
+                  </h2>
+                  <p className={appShellStyles.welcomeSubtitle}>
+                    Ready to create amazing invoices ?
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            <div className={appShellStyles.headerActions}>
+              <button onClick={() => navigate("/app/create-invoice")} className={appShellStyles.ctaButton}>
+                <CreateIcon className={appShellStyles.ctaIcon} />
+                <span className='hidden xs:inline'>Create Invoice</span>
+                <span className='xs:hidden'>Create</span>
+              </button>
+
+              <div className={appShellStyles.userSectionDesktop}>
+                <div className={appShellStyles.userInfo}>
+                  <div className={appShellStyles.userName}>{displayName}</div>
+                  <div className={appShellStyles.userEmail}>{user?.email}</div>
+                </div>
+
+                <div className={appShellStyles.userAvatarContainer}>
+                  <div className={appShellStyles.userAvatar}>
+                    {initials()}
+                    <div className={appShellStyles.userAvatarBorder} />
+                  </div>
+                  <div className={appShellStyles.userStatus}></div>
+                </div>
+
+              </div>
+            </div>
+
+          </header>
+          <main className={appShellStyles.main}>
+            <div className={appShellStyles.mainContainer}>
+              <div className={appShellStyles}>
+                <Outlet />   {/* Acts as a placeholder for child routes (React Router) */}
+              </div>
+
+            </div>
+          </main>
+        </div>
 
       </div>
     </div>
