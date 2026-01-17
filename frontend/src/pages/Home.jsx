@@ -1,10 +1,18 @@
 import React from 'react'
 import Navbar from '../components/Navbar.jsx'
+import Hero from './Hero.jsx'
+import Features from '../components/Features.jsx'
 
 const Home = () => {
   return (
     <div>
-        <Navbar />
+      <Navbar />
+      <main className=''>
+      <Hero/>
+      <div className=''>
+        <Features />
+      </div>
+      </main>
     </div>
   )
 }
