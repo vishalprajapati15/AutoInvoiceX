@@ -1,8 +1,19 @@
 import React from 'react'
+import { footerStyles } from '../assets/dummyStyles.js'
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer className={footerStyles.footer}>
+        <div className={footerStyles.container}>
+            <div className={footerStyles.copyright}>
+                &copy; {new Date().getFullYear()} InvoiceAI • Built by Vishal Prajapati
+            </div>
+            <div className={footerStyles.links}>
+                <a href="/terms" className={footerStyles.link}>Terms</a>
+                <a href="/terms" className={footerStyles.link}>Privacy</a>
+            </div>
+        </div>
+    </footer>
   )
 }
 
