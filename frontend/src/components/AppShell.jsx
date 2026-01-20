@@ -267,7 +267,7 @@ const AppShell = () => {
                 <SidebarLink to="/app/dashboard" icon={<DashboardIcon />}>
                   DashBoard
                 </SidebarLink>
-                <SidebarLink to="/app/invocies" icon={<InvoiceIcon />}>
+                <SidebarLink to="/app/invoices" icon={<InvoiceIcon />}>
                   Invoices
                 </SidebarLink>
                 <SidebarLink to="/app/create-invoice" icon={<CreateIcon />}>
@@ -408,7 +408,10 @@ const AppShell = () => {
         )}
         {/* main content section(navbar) */}
 
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0" style={{
+          position:"relative",
+          zIndex: 20
+        }}>
           <header className={`${appShellStyles.header} ${scrolled
             ? appShellStyles.headerScrolled
             : appShellStyles.headerNotScrolled

@@ -295,24 +295,25 @@ const Dashboard = () => {
         typeof inv.amount === "number"
           ? inv.amount
           : Number(inv.total ?? inv.amount ?? 0);
+
       const invCurrency = inv.currency || "INR";
+
       const amtInINR = convertToINR(rawAmount, invCurrency);
 
       if (inv.status === "Paid") {
         totalPaid += amtInINR;
         paidCount++;
       }
-      if (inv.status === "Unpaid" || inv.status === "Overdue") {
+      if (inv.status === "Unpaid" || inv.status === "dverdue") {
         totalUnpaid += amtInINR;
         unpaidCount++;
       }
     });
 
     const totalAmount = totalPaid + totalUnpaid;
-    const paidPercentage =
-      totalAmount > 0 ? (totalPaid / totalAmount) * 100 : 0;
-    const unpaidPercentage =
-      totalAmount > 0 ? (totalUnpaid / totalAmount) * 100 : 0;
+    const paidPercentage = totalAmount > 0 ? (totalPaid / totalAmount) * 100 : 0;
+    const unpaidPercentage = totalAmount > 0 ? (totalUnpaid / totalAmount) * 100 : 0;
+
 
     return {
       totalInvoices,
@@ -362,7 +363,7 @@ const Dashboard = () => {
       <div className={dashboardStyles.headerContainer}>
         <h1 className={dashboardStyles.headerTitle}>Dashboard Overview</h1>
         <p className={dashboardStyles.headerSubtitle}>
-          Track your  invoicing performance and business insights
+          Track your invoicing performance and business insights
         </p>
       </div>
 
@@ -566,7 +567,7 @@ const Dashboard = () => {
                 <tbody className={dashboardStyles.tableBody}>
                   {recent.map((inv) => {
                     const clientName = getClientName(inv);
-                    const clientInitial = getclientInitial(inv);
+                    const clientInitial = getClientInitial(inv);
 
                     return (
                       <tr

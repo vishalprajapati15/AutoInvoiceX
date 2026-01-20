@@ -5,7 +5,7 @@ import path from 'path';
 
 const API_BASE = 'http://localhost:4000';
 
-function computeToatls(items =[], taxPercent=0){
+function computeTotals(items =[], taxPercent=0){
     const safe = Array.isArray(items) ? items.filter(Boolean):[];
     const subtotal = safe.reduce(
         (s, it)=> s + Number(it.qty || 0) * Number(it.unitPrice || 0),0
