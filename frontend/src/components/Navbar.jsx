@@ -44,7 +44,6 @@ const Navbar = () => {
             if (token) {
                 try {
                     localStorage.setItem(TOKEN_KEY, token);
-                    console.log("Token : ", token);
                 } catch (err) {
                     // ignore any err which are occuring during this process 
                 }

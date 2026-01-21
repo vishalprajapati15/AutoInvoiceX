@@ -15,15 +15,15 @@ function uploadedFilesToUrls(req) {
     const sigArr = req.files.signatureNameMeta || req.files.signature || [];
 
     if(logoArr[0]){
-        urls.logoUrl = `${API_BASE}/uploads/${logoArr[0].fileName}`;
+        urls.logoUrl = `${API_BASE}/uploads/${logoArr[0].filename}`;
     }
 
     if(stampArr[0]){
-        urls.stampUrl = `${API_BASE}/uploads/${stampArr[0].fileName}`;
+        urls.stampUrl = `${API_BASE}/uploads/${stampArr[0].filename}`;
     }
 
     if(sigArr[0]){
-        urls.signatureUrl = `${API_BASE}/uploads/${sigArr[0].fileName}`;
+        urls.signatureUrl = `${API_BASE}/uploads/${sigArr[0].filename}`;
     }
 
     return urls
