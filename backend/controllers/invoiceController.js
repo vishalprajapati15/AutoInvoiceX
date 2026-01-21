@@ -336,7 +336,7 @@ export async function updateInvoice(req, res) {
             body.taxPercent ?? body.tax ??body.defaultTaxPercent ?? existing.taxPercent??0
         );
 
-        const totals = computeToatls(items, taxPercent);
+        const totals = computeTotals(items, taxPercent);
         const fileUrls = uploadFilesToUrls(req);
 
         // to update

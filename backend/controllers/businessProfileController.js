@@ -60,7 +60,7 @@ export async function createBusinessProfile(req, res) {
         const saved = await profile.save();
         return res.status(201).json({success:true, data:saved, message:"Profile Created Successfully!!"}) 
     } catch (err) {
-        console.log("CreateBusiness Profile Error : ", err);
+        console.error("CreateBusiness Profile Error : ", err);
         return res.status(500).json({success: false, message: "Server Error !!"});
     }
 }
@@ -115,7 +115,7 @@ export async function updateBusinessProfile(req, res) {
     
 
     } catch (err) {
-        console.log("Update Business Profile Error : ", err);
+        console.error("Update Business Profile Error : ", err);
         return res.status(500).json({success: false, message: "Server Error !!"});
     }
 }
@@ -140,7 +140,7 @@ export async function getMyBusinessProfile(req, res) {
             message:"Profile found"
         });
     } catch (err) {
-        console.log("Get My Business Profile Error : ", err);
+        console.error("Get My Business Profile Error : ", err);
         return res.status(500).json({success: false, message: "Server Error !!"});
     }
 }
