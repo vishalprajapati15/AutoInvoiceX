@@ -12,8 +12,8 @@ invoiceRouter.use(clerkMiddleware());
 invoiceRouter.get("/", getInvoices);
 invoiceRouter.get("/:id", getInvoiceById);
 invoiceRouter.post("/", createInvoice);
-invoiceRouter.put("/", updateInvoice);
-invoiceRouter.delete("/",deleteInvoice);
+invoiceRouter.put("/:id", updateInvoice);
+invoiceRouter.delete("/:id",deleteInvoice);
 
 
 export default invoiceRouter

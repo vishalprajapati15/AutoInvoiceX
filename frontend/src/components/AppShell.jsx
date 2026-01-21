@@ -48,7 +48,7 @@ const AppShell = () => {
     return () => {
       document.body.style.overflow = "";
     };
-  }, mobileOpen);
+  }, [mobileOpen]);
   //Header scroll effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
