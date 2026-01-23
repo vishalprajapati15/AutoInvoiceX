@@ -1,119 +1,152 @@
-# Welcome to InvoiceAI
+# 📄 InvoiceAI - AI-Powered Invoice Generation System
 
-> An AI-powered invoice generation system that collects user inputs through an interactive form and uses the Gemini API to automatically generate professional invoices and smart notes. Built with a client-server architecture for scalability and performance.
+> **InvoiceAI** is a sophisticated, AI-driven invoice management platform that streamlines the process of creating professional invoices. By leveraging the power of **Google Gemini AI**, users can generate detailed invoices from simple text prompts. Built with a modern tech stack (MERN + Vite), it offers a seamless experience for freelancers and businesses alike.
 
-## Root Structure
+---
 
-    ├── frontend
-    ├── backend
-    └── README.md
+## ✨ Key Features
 
-------------------------------------------------------------------------
+-   🤖 **AI-Powered Generation**: Transform simple text descriptions into structured, professional invoices using Google's Gemini AI.
+-   📋 **Interactive Forms**: Manual invoice creation with real-time preview and automatic total/tax calculations.
+-   📂 **Invoice Management**: Full CRUD operations (Create, Read, Update, Delete) for managing your billing history.
+-   📧 **Email Invoicing**: Send invoice summaries directly to clients via email.
+-   👤 **Business Profiles**: Save and manage your business details including logos, stamps, and digital signatures.
+-   🔐 **Secure Authentication**: Robust user authentication and management powered by Clerk.
+-   📁 **Asset Management**: Integrated with Cloudinary for secure storage of business logos and signatures.
+-   📊 **Dashboard**: High-level overview of invoice status (Draft, Paid, Pending, etc.) via KPI cards.
 
-## Frontend Structure
+---
 
-    frontend
-    ├── src
-    │   ├── index.css
-    │   ├── assets
-    │   │   ├── logo.png
-    │   │   ├── sign.png
-    │   │   ├── stamp.png
-    │   │   ├── GenerateBtn
-    │   │   │   ├── Gbtn.jsx
-    │   │   │   └── Gbtn.css
-    │   │   │── react.svg
-    │   ├── components
-    │   │   ├── InvoicePreview.jsx
-    │   │   ├── Footer.jsx
-    │   │   ├── GeminiIcon.jsx
-    │   │   ├── AiInvoiceModel.jsx
-    │   │   ├── StatusBadge.jsx
-    │   │   ├── KpiCard.jsx
-    │   │   ├── Features.jsx
-    │   │   ├── Navbar.jsx
-    │   │   ├── Hero.jsx
-    │   │   ├── Pricing.jsx
-    │   │   └── AppShell.jsx
-    │   ├── pages
-    │   │   ├── Home.jsx
-    │   │   ├── Dashboard.jsx
-    │   │   └── Invoices.jsx
-    │   ├── main.jsx
-    │   └── App.jsx
-    ├── .env
-    ├── vite.config.js
-    ├── .gitignore
-    ├── index.html
-    ├── package.json
-    ├── eslint.config.js
-    ├── README.md
-    └── public
-        └── vite.svg
+## 🛠️ Tech Stack
 
-### Description
+### Frontend
+-   **React 19** + **Vite** (Next-gen frontend tooling)
+-   **Tailwind CSS 4.0** (Modern styling)
+-   **Clerk React** (User authentication)
+-   **React Router DOM** (Client-side routing)
 
--   **src/**: Main source folder for the React application.
--   **assets/**: Contains images, icons, and reusable UI assets.
--   **components/**: Reusable UI components.
--   **pages/**: Page-level components.
--   **main.jsx**: Application entry point.
--   **App.jsx**: Root React component.
--   **public/**: Publicly accessible static files.
--   **vite.config.js**: Vite configuration.
--   **.env**: Environment variables.
+### Backend
+-   **Node.js** + **Express** (Robust API server)
+-   **MongoDB** + **Mongoose** (Scalable database)
+-   **Google GenAI** (Gemini AI integration)
+-   **Nodemailer** (Email delivery)
+-   **Cloudinary** (Cloud asset management)
+-   **Multer** (File handling)
 
-------------------------------------------------------------------------
+---
 
-## Backend Structure
+## 🏗️ Project Structure
 
-    backend
-    ├── config
-    │   └── db.js
-    ├── routes
-    │   ├── invoiceRouter.js
-    │   ├── businessProfileRouter.js
-    │   └── aiInvoiceRouter.js
-    ├── models
-    │   ├── businessProfileModel.js
-    │   └── invoiceModel.js
-    ├── controllers
-    │   ├── businessProfileController.js
-    │   └── invoiceController.js
-    ├── server.js
-    ├── package.json
-    └── .gitignore
+```text
+InvoiceAI/
+├── frontend/               # React + Vite application
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Home, Dashboard, Invoices
+│   │   ├── assets/         # Global assets (images, styles)
+│   │   └── App.jsx         # Root component
+│   └── package.json
+└── backend/                # Node.js + Express API
+    ├── config/             # Database & Cloudinary config
+    ├── controllers/        # Business logic for API
+    ├── models/             # Mongoose schemas
+    ├── routes/             # API route definitions
+    ├── utils/              # Helper functions (e.g., email)
+    ├── uploads/            # Local asset storage (fallback)
+    ├── server.js           # Entry point
+    └── package.json
+```
 
-### Description
+---
 
--   **config/**: Database and environment configuration.
--   **routes/**: API route definitions.
--   **models/**: Mongoose/DB schema definitions.
--   **controllers/**: Business logic for routes.
--   **server.js**: Backend entry point.
--   **package.json**: Backend dependencies.
+## 🚀 Getting Started
 
-------------------------------------------------------------------------
+### Prerequisites
+-   Node.js (v18 or higher)
+-   MongoDB Atlas account or local MongoDB
+-   Clerk Dev Account
+-   Gemini API Key
+-   Cloudinary Account
 
-## Notes
+### 📦 Installation
 
--   The frontend is built using **React + Vite**.
--   The backend uses **Node.js + Express**.
--   This structure follows a modular and scalable architecture.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/vishalprajapati15/AutoInvoiceX.git
+    cd InvoiceAI
+    ```
 
-------------------------------------------------------------------------
+2.  **Backend Setup:**
+    ```bash
+    cd backend
+    npm install
+    ```
+    Create a `.env` file in the `backend` directory and add:
+    ```env
+    CLERK_PUBLISHABLE_KEY=your_clerk_pub_key
+    CLERK_SECRET_KEY=your_clerk_secret_key
+    MONGODB_URI=your_mongodb_uri
+    DB_NAME=your_db_name
+    GEMINI_API_KEY=your_gemini_api_key
+    CLOUDINARY_CLOUD_NAME=your_cloud_name
+    CLOUDINARY_API_KEY=your_api_key
+    CLOUDINARY_API_SECRET=your_api_secret
+    SMTP_HOST=your_smtp_host
+    SMTP_PORT=your_smtp_port
+    SMTP_SERVICE=gmail
+    SMTP_MAIL=your_email
+    SMTP_PASSWORD=your_email_app_password
+    ```
 
-## Author
+3.  **Frontend Setup:**
+    ```bash
+    cd ../frontend
+    npm install
+    ```
+    Create a `.env` file in the `frontend` directory:
+    ```env
+    VITE_CLERK_PUBLISHABLE_KEY=your_clerk_pub_key
+    ```
 
-👤 **Vishal Prajapati**
+### ▶️ Running the Application
 
-* Github: [@vishalprajapati15](https://github.com/vishalprajapati15)
-* LinkedIn: [@vishalprajapati15](https://linkedin.com/in/vishalprajapati15)
+1.  **Start Backend Server:**
+    ```bash
+    cd backend
+    npm start
+    ```
 
-## Show your support
+2.  **Start Frontend Development Server:**
+    ```bash
+    cd frontend
+    npm run dev
+    ```
 
-Give a ⭐️ if this project helped you!
+---
 
+## 🔌 API Endpoints
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+### Invoices
+-   `POST /api/invoice` - Create a new invoice
+-   `GET /api/invoice` - List all invoices (filtered by user)
+-   `GET /api/invoice/:id` - Get specific invoice details
+-   `PUT /api/invoice/:id` - Update an existing invoice
+-   `DELETE /api/invoice/:id` - Delete an invoice
+-   `POST /api/invoice/send-email` - Send invoice via email
+
+### AI & Profile
+-   `POST /api/ai/generate` - Generate invoice JSON from text prompt
+-   `GET /api/businessProfile/me` - Get current user's business profile
+-   `POST /api/businessProfile` - Create/Update business profile
+
+---
+
+## 👤 Author
+
+**Vishal Prajapati**
+-   Github: [@vishalprajapati15](https://github.com/vishalprajapati15)
+-   LinkedIn: [@vishalprajapati15](https://linkedin.com/in/vishalprajapati15)
+
+## ⭐ Show your support
+
+If this project helped you, please give it a star on GitHub!
