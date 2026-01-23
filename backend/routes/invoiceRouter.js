@@ -1,6 +1,6 @@
 import express from 'express';
 import { clerkMiddleware } from '@clerk/express'
-import { createInvoice, deleteInvoice, getInvoiceById, getInvoices, updateInvoice } from '../controllers/invoiceController.js';
+import { createInvoice, deleteInvoice, getInvoiceById, getInvoices, sendInvoiceEmail, updateInvoice } from '../controllers/invoiceController.js';
 
 
 
@@ -13,7 +13,8 @@ invoiceRouter.get("/", getInvoices);
 invoiceRouter.get("/:id", getInvoiceById);
 invoiceRouter.post("/", createInvoice);
 invoiceRouter.put("/:id", updateInvoice);
-invoiceRouter.delete("/:id",deleteInvoice);
+invoiceRouter.delete("/:id", deleteInvoice);
+invoiceRouter.post("/send-email", sendInvoiceEmail);
 
 
-export default invoiceRouter
+export default invoiceRouter;
