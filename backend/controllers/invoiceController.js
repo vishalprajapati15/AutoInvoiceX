@@ -443,10 +443,10 @@ export async function deleteInvoice(req, res) {
 export async function sendInvoiceEmail(req, res) {
     try {
         const { userId } = getAuth(req) || {};
-        if (userId) {
+        if (!userId) {
             return res.status(401).json({
                 success: false,
-                message: 'Authentication require'
+                message: 'Authentication required',
             });
         }
 

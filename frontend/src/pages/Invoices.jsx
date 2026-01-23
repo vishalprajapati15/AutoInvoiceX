@@ -181,6 +181,19 @@ const ResetIcon = ({ className = "w-4 h-4" }) => (
   </svg>
 );
 
+const MailIcon = ({ className = "w-4 h-4" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    <polyline points="22,6 12,13 2,6" />
+  </svg>
+);
+
 /* Pagination component */
 function Pagination({ page, totalPages, onChange }) {
   if (totalPages <= 1) return null;
@@ -208,11 +221,10 @@ function Pagination({ page, totalPages, onChange }) {
               key={p}
               type="button"
               onClick={() => onChange(p)}
-              className={`${invoicesStyles.paginationNumber} ${
-                p === page
+              className={`${invoicesStyles.paginationNumber} ${p === page
                   ? invoicesStyles.paginationNumberActive
                   : invoicesStyles.paginationNumberInactive
-              }`}
+                }`}
             >
               {p}
             </button>
@@ -445,6 +457,59 @@ export default function InvoicesPage() {
     }
   }
 
+  async function handleSendEmail(inv) {
+    const client = normalizeClient(inv.client);
+    const clientEmail = client.email || inv.email;
+    if (!clientEmail) {
+      alert("No email address found for this client. Please add an email in the invoice");
+      return;
+    }
+    const confirmSend = confirm(`Send Invoice details to ${clientEmail}? `);
+    if (!confirmSend) {
+      return;
+    }
+    try {
+      const token = await obtainToken();
+      if (!token) {
+        alert('Sending Email require authentication. Please sing in.');
+        navigate("/login");
+        return;
+      }
+
+      const res = await fetch(`${API_BASE}/api/invoice/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          invoiceId: inv.id,
+          email: clientEmail,
+          subject: `Invoice ${inv.invoiceNumber || inv.id} from InvoiceAI`,
+          message: `Dear ${client.name || "Client"},\n\nPlease find your invoice details below:\n\nInvoice Number: ${inv.invoiceNumber || inv.id}\nAmount: ${formatCurrency(inv.amount || 0, inv.currency)}\nDue Date: ${inv.dueDate ? formatDate(inv.dueDate) : "N/A"}\n\nThank you for your business!\n\nBest regards,\n${inv.fromBusinessName || "InvoiceAI"}`
+        }),
+      });
+
+      if (res.status === 401) {
+        alert("Unauthorized. Please sing in !!");
+        navigate("/login");
+        return;
+      }
+
+      const json = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        throw new Error(json?.message, `Failed to send email ${res.status}`);
+      }
+
+      alert(`Invoice details sent successfully to ${clientEmail}`);
+
+    } catch (error) {
+      console.log('Send Email Error : ', error);
+      alert(error?.message || 'Failed to send email!!')
+    }
+  }
+
   // AI flow: call AI -> create invoice on backend (requires auth).
   // NOTE: If the AI provider returns quota/429 (or any non-ok), this function throws
   // an Error with a readable message — the modal will display it.
@@ -525,7 +590,7 @@ export default function InvoicesPage() {
             let errJson = null;
             try {
               errJson = errText ? JSON.parse(errText) : null;
-            } catch {}
+            } catch { }
             const errMsg =
               (errJson && (errJson.message || errJson.detail)) ||
               errText ||
@@ -980,6 +1045,20 @@ export default function InvoicesPage() {
                           className={invoicesStyles.viewButton}
                         >
                           <EyeIcon className={invoicesStyles.buttonIcon} /> View
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => handleSendEmail(inv)}
+                          className={invoicesStyles.sendButton}
+                          title="Send invoice via email"
+                          style={{
+                            background: "#e0f2fe",
+                            color: "#0369a1",
+                            borderColor: "#7dd3fc",
+                          }}
+                        >
+                          <MailIcon className={invoicesStyles.buttonIcon} /> Send
                         </button>
 
                         <button
