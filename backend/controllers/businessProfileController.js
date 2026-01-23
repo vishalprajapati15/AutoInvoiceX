@@ -1,32 +1,41 @@
 import { getAuth } from '@clerk/express';
 import BusinessProfile from '../models/businessProfileModel.js';
+import uploadOnCloudinary from '../config/cloudinary.js';
 
 const API_BASE = 'http://localhost:4000';
 
 // file to url
 
-function uploadedFilesToUrls(req) {
-    const urls = {};
-    if(!req.files){
+async function uploadedFilesToUrls(req) {
+    const urls ={};
+    if(!req){
         return urls;
     }
-    const logoArr = req.files.logoName ||req.files.logo || [];
+    const logoArr = req.files.logoName || req.files.logo || [];
     const stampArr = req.files.stampName || req.files.stamp || [];
-    const sigArr = req.files.signatureNameMeta || req.files.signature || [];
+    const signArr = req.files.signatureNameMeta || req.files.signature || [];
 
-    if(logoArr[0]){
-        urls.logoUrl = `${API_BASE}/uploads/${logoArr[0].filename}`;
+    if (logoArr[0] && logoArr[0].path) {
+        const logoUpload = await uploadOnCloudinary(logoArr[0].path);
+        if(logoUpload) {
+            urls.logoUrl = logoUpload.secure_url;
+        }
     }
 
-    if(stampArr[0]){
-        urls.stampUrl = `${API_BASE}/uploads/${stampArr[0].filename}`;
+    if (stampArr[0] && stampArr[0].path) {
+        const stampUpload = await uploadOnCloudinary(stampArr[0].path);
+        if(stampUpload) {
+            urls.stampUrl = stampUpload.secure_url;
+        }
     }
 
-    if(sigArr[0]){
-        urls.signatureUrl = `${API_BASE}/uploads/${sigArr[0].filename}`;
+    if (signArr[0] && signArr[0].path) {
+        const signUpload = await uploadOnCloudinary(signArr[0].path);
+        if(signUpload) {
+            urls.signatureUrl = signUpload.secure_url;
+        }
     }
-
-    return urls
+    return urls;
 }
 
 //create a business profile

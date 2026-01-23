@@ -7,6 +7,7 @@ import path from 'path';
 import invoiceRouter from './routes/invoiceRouter.js';
 import businessProfileRouter from './routes/businessProfileRouter.js';
 import aiInvoiceRouter from './routes/aiInvoiceRouter.js';
+import { cloudinary } from './config/cloudinary.js';
 
 
 const app = express();
@@ -38,6 +39,13 @@ app.get('/', (req, res)=>{
     res.send("API WORKING...");
 })
 
-app.listen(port, ()=>{
+app.listen(port, async ()=>{
     console.log(`App is listening on http://localhost:${port} `);
-})
+
+    try {
+        const cloudinaryResponse = await cloudinary.api.ping();
+        console.log("✅ Cloudinary connected successfully!!");
+    } catch (error) {
+        console.log("❌ Cloudinary connection failed : ", error.message);
+    }
+});
