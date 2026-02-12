@@ -289,6 +289,7 @@ export default function InvoicesPage() {
   // AI modal
   const [aiOpen, setAiOpen] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
+  const [sendEmail, setSendEmail] = useState(null);
 
   // fetch invoices from backend (auth-aware)
   const fetchInvoices = useCallback(async () => {
@@ -468,6 +469,7 @@ export default function InvoicesPage() {
     if (!confirmSend) {
       return;
     }
+    setSendEmail(inv.id);
     try {
       const token = await obtainToken();
       if (!token) {
@@ -507,6 +509,8 @@ export default function InvoicesPage() {
     } catch (error) {
       console.log('Send Email Error : ', error);
       alert(error?.message || 'Failed to send email!!')
+    } finally {
+      setSendEmail(null);
     }
   }
 
@@ -1052,13 +1056,14 @@ export default function InvoicesPage() {
                           onClick={() => handleSendEmail(inv)}
                           className={invoicesStyles.sendButton}
                           title="Send invoice via email"
+                          disabled={sendEmail === inv.id}
                           style={{
                             background: "#e0f2fe",
                             color: "#0369a1",
                             borderColor: "#7dd3fc",
                           }}
                         >
-                          <MailIcon className={invoicesStyles.buttonIcon} /> Send
+                          <MailIcon className={invoicesStyles.buttonIcon} /> {sendEmail === inv.id ? "Sending..." : "Send"}
                         </button>
 
                         <button

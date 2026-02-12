@@ -2,9 +2,7 @@ import { getAuth } from '@clerk/express';
 import BusinessProfile from '../models/businessProfileModel.js';
 import uploadOnCloudinary from '../config/cloudinary.js';
 
-const API_BASE = 'http://localhost:4000';
-
-// file to url
+const API_BASE = process.env.BACKEND_URL;
 
 async function uploadedFilesToUrls(req) {
     const urls ={};
@@ -49,7 +47,7 @@ export async function createBusinessProfile(req, res) {
         }
 
         const body = req.body || {};
-        const fileUrls = uploadedFilesToUrls(req);
+        const fileUrls = await uploadedFilesToUrls(req);
 
         const profile = new BusinessProfile({
             owner:userId,
@@ -87,7 +85,7 @@ export async function updateBusinessProfile(req, res) {
 
         const {id} = req.params;
         const body = req.body || {};
-        const fileUrls = uploadedFilesToUrls(req);
+        const fileUrls = await uploadedFilesToUrls(req);
 
         const existing = await BusinessProfile.findById(id);
         if(!existing){

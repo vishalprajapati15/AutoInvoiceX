@@ -5,13 +5,13 @@ export const aiInvoiceModalStyles = {
   modal: "relative max-w-3xl w-full bg-white rounded-2xl shadow-lg p-6 z-10",
   title: "inline-flex items-center gap-2 py-2 pb-4 text-gray-700  transition-all duration-200 font-medium group",
   description: "text-sm text-gray-500 mt-1",
-  closeButton: "text-gray-400 hover:text-gray-600",
+  closeButton: "text-gray-400 hover:text-gray-600 cursor-pointer",
   label: "block text-xs font-medium text-gray-600 mb-2",
   textarea: "w-full rounded-md border text-gray-500 border-gray-200 px-3 py-2 text-sm resize-vertical focus:ring-2 focus:ring-indigo-100",
   error: "mt-3 text-sm text-rose-600",
   actions: "mt-4 flex justify-end gap-3",
-  cancelButton: "px-4 py-2 rounded-md border text-sm",
-  generateButton: "px-4 py-2 rounded-md bg-indigo-600 text-white text-sm disabled:opacity-60"
+  cancelButton: "px-4 py-2 rounded-md border text-sm cursor-pointer",
+  generateButton: "px-4 py-2 rounded-md bg-indigo-600 text-white text-sm disabled:opacity-60 cursor-pointer"
 };
 
 // src/assets/dummyStyles.js
@@ -58,7 +58,7 @@ export const businessProfileStyles = {
   buttonGroup: "flex flex-wrap gap-2 justify-center sm:gap-3 md:gap-4",
   changeButton: "inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 transition-all duration-200 cursor-pointer font-medium text-sm sm:text-base",
 
-  removeButton: "inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 transition-all duration-200 font-medium text-sm sm:text-base",
+  removeButton: "inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 transition-all duration-200 font-medium text-sm sm:text-base cursor-pointer",
 
   
   // Tax Section
@@ -70,8 +70,8 @@ export const businessProfileStyles = {
   actionContainer: "bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-gray-200/60 shadow-sm",
   actionInnerContainer: "flex flex-col sm:flex-row items-center justify-between gap-4",
   actionButtonGroup: "flex flex-wrap items-center gap-2 sm:gap-3 justify-center sm:justify-start",
-  saveButton:  "inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 md:px-7 md:py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm sm:text-base hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed",
-  resetButton:  "inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 md:px-7 md:py-3.5 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium text-sm sm:text-base",
+  saveButton:  "inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 md:px-7 md:py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm sm:text-base hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer",
+  resetButton:  "inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 md:px-7 md:py-3.5 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium text-sm sm:text-base cursor-pointer",
   
   // Animation
   hoverScale: "group-hover:scale-105 transition-transform duration-300"
@@ -97,7 +97,7 @@ export const aiReminderModalStyles = {
   modal: "relative max-w-2xl w-full bg-white rounded-2xl shadow-lg p-6 z-10",
   title: "text-lg font-semibold",
   description: "text-sm text-gray-500 mt-1",
-  closeButton: "text-gray-400 hover:text-gray-600",
+  closeButton: "text-gray-400 hover:text-gray-600 cursor-pointer",
   label: "block text-sm font-medium text-gray-700",
   textarea: "mt-1 w-full text-gray-500 rounded-md border border-gray-200 px-3 py-2 text-sm",
   error: "mt-3 text-sm text-rose-600",
@@ -107,11 +107,11 @@ export const aiReminderModalStyles = {
   previewPlaceholder: "text-gray-400",
   previewPlaceholderHighlight: "font-medium",
   actions: "mt-4 flex items-center justify-end gap-3",
-  resetButton: "px-3 py-2 rounded-md border text-sm",
-  copyButton: "px-3 py-2 rounded-md border text-sm",
-  copyButtonEnabled: "bg-white hover:bg-gray-50",
+  resetButton: "px-3 py-2 rounded-md border text-sm cursor-pointer",
+  copyButton: "px-3 py-2 rounded-md border text-sm cursor-pointer",
+  copyButtonEnabled: "bg-white hover:bg-gray-50 cursor-pointer",
   copyButtonDisabled: "opacity-50 cursor-not-allowed",
-  generateButton: "px-4 py-2 rounded-md bg-indigo-600 text-white text-sm"
+  generateButton: "px-4 py-2 rounded-md bg-indigo-600 text-white text-sm cursor-pointer"
 };
 
 // Add to src/assets/dummyStyles.js (after the existing styles)
@@ -166,19 +166,19 @@ cardSubtitle: "text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4",
   inputSmall: "w-full rounded-xl border text-gray-500 border-gray-300 px-4 py-3 bg-white/50 backdrop-blur-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm",
   
   // Buttons
-  previewButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium shadow-sm",
-  saveButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed",
-  saveProfileButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 transition-all duration-200 text-sm font-medium",
-  addItemButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-dashed border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-700 transition-all duration-200 font-medium w-full justify-center group",
+  previewButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium shadow-sm cursor-pointer",
+  saveButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer",
+  saveProfileButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 transition-all duration-200 text-sm font-medium cursor-pointer",
+  addItemButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-dashed border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-700 transition-all duration-200 font-medium w-full justify-center group cursor-pointer",
   
   // Currency & Status
   currencyContainer: "flex gap-3",
-  currencyButton: "flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 flex-1",
-  currencyButtonActive1: "border-green-500 bg-green-50 text-green-700 shadow-sm",
-  currencyButtonActive2: "border-blue-500 bg-blue-50 text-blue-700 shadow-sm",
-  currencyButtonInactive: "border-gray-200 bg-white text-gray-600 hover:border-gray-300",
+  currencyButton: "flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 flex-1 cursor-pointer",
+  currencyButtonActive1: "border-green-500 bg-green-50 text-green-700 shadow-sm cursor-pointer",
+  currencyButtonActive2: "border-blue-500 bg-blue-50 text-blue-700 shadow-sm cursor-pointer",
+  currencyButtonInactive: "border-gray-200 bg-white text-gray-600 hover:border-gray-300 cursor-pointer",
   statusContainer: "flex flex-wrap gap-2",
-  statusButton: "relative overflow-hidden rounded-full transition-all duration-200 ease-out",
+  statusButton: "relative overflow-hidden rounded-full transition-all duration-200 ease-out cursor-pointer",
   statusButtonActive: "ring-2 ring-offset-2 ring-blue-500 transform scale-105",
   statusButtonInactive: "opacity-80 hover:opacity-100 hover:scale-105",
   statusDropdown: "mt-2 sm:hidden w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200",
@@ -206,7 +206,7 @@ cardSubtitle: "text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4",
 
   // Remove button: visible & tap-friendly
   itemsRemoveButton:
-    "flex items-center justify-center p-2 rounded-lg text-rose-600 hover:bg-rose-50 transition-all duration-200 focus:outline-none",
+    "flex items-center justify-center p-2 rounded-lg text-rose-600 hover:bg-rose-50 transition-all duration-200 focus:outline-none cursor-pointer",
 
   // per-field label: shown below lg (stacked labels)
   itemsFieldLabel: "block text-xs font-medium text-gray-600 mb-1",
@@ -295,7 +295,7 @@ export const appShellStyles = {
   logoTextContainer: "",
   logoText: "font-bold text-3xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent",
   logoUnderline: "h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-500 mt-1",
-  collapseButton: "p-2 ml-7 rounded-lg border border-gray-200 bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300 group",
+  collapseButton: "p-2 ml-7 rounded-lg border border-gray-200 bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300 group cursor-pointer",
   
   // Navigation
   nav: "space-y-2",
@@ -314,7 +314,7 @@ export const appShellStyles = {
   userDivider: "border-t border-gray-200/60 pt-6",
   userDividerCollapsed: "px-1",
   userDividerExpanded: "px-2",
-  logoutButton: "w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 hover:shadow-sm transition-all duration-300 group",
+  logoutButton: "w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 hover:shadow-sm transition-all duration-300 group cursor-pointer",
   logoutIcon: "w-5 h-5 group-hover:scale-110 transition-transform",
   collapseSection: "mt-4 flex justify-center",
   collapseButtonInner: "flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-white transition-all duration-300 text-xs text-gray-600 hover:text-gray-800",
@@ -328,14 +328,14 @@ export const appShellStyles = {
   mobileLogoLink: "inline-flex items-center",
   mobileLogoImage: "h-10 w-10 object-contain",
   mobileLogoText: "font-bold text-xl ml-3 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent",
-  mobileCloseButton: "p-2 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-white transition-all duration-300",
+  mobileCloseButton: "p-2 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-white transition-all duration-300 cursor-pointer",
   mobileCloseIcon: "w-5 h-5 text-gray-600",
   mobileNav: "space-y-2",
   mobileNavLink: "flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-300",
   mobileNavLinkActive: "bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border border-blue-100",
   mobileNavLinkInactive: "text-gray-600 hover:text-gray-900 hover:bg-white hover:shadow-sm",
   mobileLogoutSection: "mt-8 border-t border-gray-200/60 pt-6",
-  mobileLogoutButton: "w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-all duration-300",
+  mobileLogoutButton: "w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-all duration-300 cursor-pointer",
   
   // Header
   header: "flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-xl border-b border-gray-200/60 sticky top-0 z-40 transition-all duration-300 min-h-20",
@@ -345,7 +345,7 @@ export const appShellStyles = {
   headerContent: "flex items-center gap-3 sm:gap-6",
   mobileMenuButton: "lg:hidden inline-flex items-center justify-center p-2 sm:p-3 rounded-xl border border-gray-200 bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300",
   mobileMenuIcon: "w-5 h-5 text-gray-700",
-  desktopCollapseButton: "hidden lg:flex items-center justify-center p-2 rounded-xl border border-gray-200 bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300",
+  desktopCollapseButton: "hidden lg:flex items-center justify-center p-2 rounded-xl border border-gray-200 bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300 cursor-pointer",
   welcomeContainer: "flex flex-col",
   welcomeTitle: "text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 tracking-tight",
   welcomeName: "bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent",
@@ -404,7 +404,7 @@ export const dashboardStyles = {
   
   // Quick Actions
   quickActionsContainer: "space-y-3",
-  quickActionButton: "w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group",
+  quickActionButton: "w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group cursor-pointer",
   quickActionIconContainer: "p-2 rounded-lg group-hover:scale-110 transition-transform",
   quickActionText: "font-medium",
   
@@ -417,7 +417,7 @@ export const dashboardStyles = {
   tableHeaderContent: "flex flex-col sm:flex-row sm:items-center sm:justify-between",
   tableTitle: "text-lg font-semibold text-gray-900",
   tableSubtitle: "text-sm text-gray-600 mt-1",
-  tableActionButton: "mt-3 sm:mt-0 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200",
+  tableActionButton: "mt-3 sm:mt-0 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200 cursor-pointer",
   
   // Table
   tableContainer: "overflow-x-auto",
@@ -441,7 +441,7 @@ export const dashboardStyles = {
   dateCell: "text-sm text-gray-900",
   
   // Action Button
-  actionButton: "inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 group/btn",
+  actionButton: "inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 group/btn cursor-pointer",
   
   // Empty State
   emptyState: "px-6 py-12 text-center",
@@ -467,8 +467,8 @@ export const invoicesStyles = {
   headerTitle: "text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight",
   headerSubtitle: "mt-2 text-lg text-gray-600 max-w-3xl",
   headerActions: "flex items-center gap-3",
-  aiButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium shadow-sm group",
-  createButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg",
+  aiButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium shadow-sm group cursor-pointer",
+  createButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg cursor-pointer",
   
   // Stats Overview
   statsGrid: "grid grid-cols-2 md:grid-cols-4 gap-6",
@@ -506,7 +506,7 @@ export const invoicesStyles = {
   perPageContainer: "flex items-center gap-3",
   perPageLabel: "text-sm font-medium text-gray-700",
   perPageSelect: "rounded-xl border border-gray-300 px-4 py-2 bg-white/50 backdrop-blur-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200",
-  resetButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all duration-200 font-medium",
+  resetButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all duration-200 font-medium cursor-pointer",
   
   // Table Section
   tableCard: "bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-200/60 shadow-sm overflow-hidden",
@@ -546,8 +546,8 @@ export const invoicesStyles = {
   // Actions Cell
   actionsCell: "px-6 py-4 text-right",
   actionsContainer: "flex items-center justify-end gap-2",
-  viewButton: "inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 group/btn",
-  sendButton: "inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all duration-200 group/btn",
+  viewButton: "inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 group/btn cursor-pointer",
+  sendButton: "inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all duration-200 group/btn cursor-pointer",
   buttonIcon: "w-4 h-4 group-hover/btn:scale-110 transition-transform",
   
   // Empty State
@@ -566,9 +566,9 @@ export const invoicesStyles = {
   pagination: "flex items-center justify-between mt-8 pt-6 border-t border-gray-200/60",
   paginationText: "text-sm text-gray-600",
   paginationControls: "flex items-center gap-2",
-  paginationButton: "flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200",
+  paginationButton: "flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer",
   paginationNumbers: "flex items-center gap-1",
-  paginationNumber: "w-10 h-10 rounded-xl text-sm font-medium transition-all duration-200",
+  paginationNumber: "w-10 h-10 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer",
   paginationNumberActive: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg",
   paginationNumberInactive: "text-gray-600 hover:bg-gray-100"
 };
@@ -614,7 +614,7 @@ export const featuresStyles = {
   
   // Bottom CTA
   bottomCtaContainer: "mt-16 text-center",
-  bottomCtaButton: "group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300",
+  bottomCtaButton: "group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer",
   bottomCtaButtonText: "Explore All Features",
   bottomCtaButtonIcon: "w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
 };
@@ -657,11 +657,11 @@ export const heroStyles = {
   
   // CTA Buttons
   ctaContainer: "flex flex-col sm:flex-row sm:items-center gap-4 lg:gap-6",
-  primaryButton: "group relative inline-flex items-center justify-center gap-3 px-8 lg:px-10 py-4 lg:py-5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 hover:from-blue-700 hover:to-indigo-700 overflow-hidden",
+  primaryButton: "group relative inline-flex items-center justify-center gap-3 px-8 lg:px-10 py-4 lg:py-5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 hover:from-blue-700 hover:to-indigo-700 overflow-hidden cursor-pointer",
   primaryButtonOverlay: "absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300",
   primaryButtonText: "relative",
   primaryButtonIcon: "w-5 h-5 relative group-hover:translate-x-1 transition-transform duration-300",
-  secondaryButton: "group inline-flex items-center justify-center gap-2 px-8 lg:px-10 py-4 lg:py-5 rounded-2xl bg-white/80 backdrop-blur-xl border border-gray-200/60 text-gray-700 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:border-gray-300/60",
+  secondaryButton: "group inline-flex items-center justify-center gap-2 px-8 lg:px-10 py-4 lg:py-5 rounded-2xl bg-white/80 backdrop-blur-xl border border-gray-200/60 text-gray-700 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:border-gray-300/60 cursor-pointer",
   secondaryButtonIcon: "w-5 h-5 group-hover:translate-y-0.5 transition-transform duration-300",
   
   // Feature Highlights
@@ -766,9 +766,9 @@ export const invoicePreviewStyles = {
   headerSubtitle: "mt-2 text-lg text-gray-600",
   headerInvoiceNumber: "font-semibold text-blue-600",
   headerActions: "flex flex-wrap items-center gap-3",
-  sendReminderButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium",
-  editInvoiceButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium",
-  printButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg",
+  sendReminderButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium cursor-pointer",
+  editInvoiceButton: "inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium cursor-pointer",
+  printButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg cursor-pointer",
 
   // Invoice Preview Card
   printArea: "print-preview-container",
@@ -849,7 +849,7 @@ export const invoicePreviewStyles = {
   emptyStateIcon: "w-8 h-8",
   emptyStateTitle: "text-xl font-semibold text-gray-900",
   emptyStateMessage: "text-gray-600 mt-2 max-w-md mx-auto",
-  emptyStateButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg"
+  emptyStateButton: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg cursor-pointer"
 };
 // src/assets/dummyStyles.js (add these to the existing export)
 export const pricingStyles = {
@@ -875,7 +875,7 @@ export const pricingStyles = {
   
   // Billing Toggle
   billingToggle: "inline-flex items-center bg-white/80 backdrop-blur-sm rounded-2xl p-2 border border-gray-200/60 shadow-sm",
-  billingButton: "px-6 py-3 rounded-xl font-semibold transition-all duration-300",
+  billingButton: "px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer",
   billingButtonActive: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg",
   billingButtonInactive: "text-gray-600 hover:text-gray-900",
   billingBadge: "ml-2 text-sm line-clamp-2 md:line-clamp-0 lg:line-clamp-0 xl:line-clamp-0 bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full",
@@ -977,7 +977,7 @@ export const authStyles = {
   passwordToggle: "absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none",
   
   // Button
-  submitButton: "w-full inline-flex justify-center items-center px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition",
+  submitButton: "w-full inline-flex justify-center items-center px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition cursor-pointer",
   submitButtonDisabled: "disabled:opacity-50 disabled:cursor-not-allowed",
   
   // Footer Link

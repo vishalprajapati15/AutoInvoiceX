@@ -54,7 +54,7 @@ async function tryGenerateWithModel(modelName, prompt) {
         contents:prompt
     });
 
-    let text = (response && typeof response.text === "text" && response.text) ||
+    let text = (response && typeof response.text === "string" && response.text) ||
     (response && 
         response.output &&
         Array.isArray(response.output) &&
@@ -133,7 +133,18 @@ aiInvoiceRouter.post("/generate", async (req, res) => {
 
             } catch (err) {
                 console.warn(`Model ${m} failed : `, err?.message || err);
-                lastErr: err;
+                lastErr = err;
+
+                // If this error indicates quota / rate-limit exhaustion, return 429 to the client
+                const errMsg = (err && (err.message || (err.error && err.error.message))) || String(err);
+                if (err?.error?.code === 429 || /quota|exhausted|rate_limit|resource_exhausted/i.test(errMsg)) {
+                    return res.status(429).json({
+                        success: false,
+                        message: "AI provider quota/rate limit exceeded",
+                        detail: errMsg,
+                    });
+                }
+
                 continue;
             }
         }
@@ -148,7 +159,7 @@ aiInvoiceRouter.post("/generate", async (req, res) => {
 
         const text = lastText.trim();
         const firstBrace = text.indexOf("{");
-        const lastBrace = text.indexOf("}");
+        const lastBrace = text.lastIndexOf("}");
         
         if(firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace){
             console.error("AI response does not contain JSON object.", {usedModel, text});

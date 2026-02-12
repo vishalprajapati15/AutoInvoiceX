@@ -4,7 +4,7 @@ import { getAuth } from "@clerk/express";
 import path from 'path';
 import sendEmail from "../utils/sendEmail.js";
 
-const API_BASE = 'http://localhost:4000';
+const API_BASE = process.env.BACKEND_URL;
 
 function computeTotals(items = [], taxPercent = 0) {
     const safe = Array.isArray(items) ? items.filter(Boolean) : [];
@@ -54,10 +54,10 @@ function uploadFilesToUrls(req) {
         stamp: "stampDataUrl",
         signature: "signatureDataUrl"
     };
-    Object.kays(mapping).forEach((field) => {
+    Object.keys(mapping).forEach((field) => {
         const arr = req.files[field];
         if (Array.isArray(arr) && arr[0]) {
-            const fileName = arr[0].fileName || (arr[0].path && path.basename(arr[0].path));
+            const fileName = arr[0].filename || (arr[0].path && path.basename(arr[0].path));
             if (fileName) {
                 urls[mapping[field]] = `${API_BASE}/uploads/${fileName}`;
             }
@@ -141,6 +141,8 @@ export async function createInvoice(req, res) {
             taxPercent,
             logoDataUrl:
                 fileUrls.logoDataUrl || body.logoDataUrl || body.logo || null,
+            stampDataUrl:
+                fileUrls.stampDataUrl || body.stampDataUrl || body.stamp || null,
             signatureDataUrl:
                 fileUrls.signatureDataUrl ||
                 body.signatureDataUrl ||
