@@ -39,22 +39,71 @@
 
 ```text
 InvoiceAI/
-├── frontend/               # React + Vite application
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/          # Home, Dashboard, Invoices
-│   │   ├── assets/         # Global assets (images, styles)
-│   │   └── App.jsx         # Root component
-│   └── package.json
-└── backend/                # Node.js + Express API
-    ├── config/             # Database & Cloudinary config
-    ├── controllers/        # Business logic for API
-    ├── models/             # Mongoose schemas
-    ├── routes/             # API route definitions
-    ├── utils/              # Helper functions (e.g., email)
-    ├── uploads/            # Local asset storage (fallback)
-    ├── server.js           # Entry point
-    └── package.json
+├── README.md
+├── backend/                       # Node.js + Express API
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── server.js                  # Entry point
+│   ├── .env
+│   ├── config/                    # Database & Cloudinary config
+│   │   ├── cloudinary.js
+│   │   └── db.js
+│   ├── controllers/               # Business logic for API
+│   │   ├── businessProfileController.js
+│   │   └── invoiceController.js
+│   ├── models/                    # Mongoose schemas
+│   │   ├── businessProfileModel.js
+│   │   └── invoiceModel.js
+│   ├── routes/                    # API route definitions
+│   │   ├── aiInvoiceRouter.js
+│   │   ├── businessProfileRouter.js
+│   │   └── invoiceRouter.js
+│   ├── uploads/                   # Local asset storage (fallback)
+│   └── utils/                     # Helper functions (e.g., email)
+│       └── sendEmail.js
+├── frontend/                      # React + Vite application
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── .env
+│   ├── .gitignore
+│   ├── index.html
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── vite.config.js
+│   ├── public/
+│   │   └── vite.svg
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx                # Root component
+│       ├── index.css
+│       ├── components/            # Reusable UI components
+│       │   ├── AiInvoiceModel.jsx
+│       │   ├── AppShell.jsx
+│       │   ├── Features.jsx
+│       │   ├── Footer.jsx
+│       │   ├── GeminiIcon.jsx
+│       │   ├── Hero.jsx
+│       │   ├── InvoicePreview.jsx
+│       │   ├── KpiCard.jsx
+│       │   ├── Navbar.jsx
+│       │   ├── Pricing.jsx
+│       │   └── StatusBadge.jsx
+│       ├── pages/                 # Home, Dashboard, Invoices
+│       │   ├── BusinessProfile.jsx
+│       │   ├── CreateInvoice.jsx
+│       │   ├── Dashboard.jsx
+│       │   ├── Home.jsx
+│       │   ├── Invoices.jsx
+│       │   └── NotFound.jsx
+│       └── assets/                # Global assets (images, styles)
+│           ├── dummyStyles.js
+│           ├── logo.png
+│           ├── react.svg
+│           ├── sign.png
+│           ├── stamp.png
+│           └── GenerateBtn/
+│               ├── Gbtn.css
+│               └── Gbtn.jsx
 ```
 
 ---
